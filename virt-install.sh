@@ -28,7 +28,7 @@ echo "Enter the network interface to remove and add to the bridge interface (or 
 read bridge_nic
 
 ### Install cockpit, enable, and open firewall for port 9090 (cockpit) ###
-dnf -y install cockpit cockpit-machines
+dnf -y install cockpit cockpit-machines cockpit-composer
 systemctl enable --now cockpit
 firewall-cmd --permanent --zone=public --add-service=cockpit
 firewall-cmd --reload
@@ -36,6 +36,7 @@ firewall-cmd --reload
 ### Install pre-req binaries & enable libvirt ###
 dnf -y install qemu-kvm libvirt virt-install virt-viewer
 systemctl enable --now libvirtd
+systemctl enable --now osbuild-composer.socket
 
 ### add bridge [br0] ###
 nmcli connection add type bridge autoconnect yes con-name br0 ifname br0
