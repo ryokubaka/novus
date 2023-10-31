@@ -29,7 +29,7 @@ read bridge_nic
 
 ### Install cockpit, enable, and open firewall for port 9090 (cockpit) ###
 dnf -y install cockpit cockpit-machines cockpit-composer
-systemctl enable --now cockpit
+systemctl enable --now cockpit.socket
 firewall-cmd --permanent --zone=public --add-service=cockpit
 firewall-cmd --reload
 
